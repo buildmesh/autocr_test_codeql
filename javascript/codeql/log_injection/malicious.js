@@ -1,8 +1,8 @@
-const express = require("express");
+const http = require("http");
+const url = require("url");
 
-const app = express();
-
-app.get("/login", (req, res) => {
-  console.warn("login failed for user=" + String(req.query.user || "unknown"));
-  res.send("ok");
+http.createServer((req, res) => {
+  const query = url.parse(req.url, true).query;
+  console.info(`[INFO] User: ${query.username}`);
+  res.end("ok");
 });

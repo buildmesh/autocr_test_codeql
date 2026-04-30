@@ -1,5 +1,5 @@
 const express = require("express");
-const serialize = require("node-serialize");
+const yaml = require("js-yaml");
 
 const app = express();
 
@@ -8,5 +8,5 @@ function decodePayload(value) {
 }
 
 app.get("/restore-token", (req, res) => {
-  res.json({ object: serialize.unserialize(decodePayload(String(req.query.payload || ""))) });
+  res.json({ object: yaml.load(decodePayload(String(req.query.payload || ""))) });
 });

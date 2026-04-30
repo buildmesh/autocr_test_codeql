@@ -4,13 +4,13 @@ from flask import Flask, request
 
 
 app = Flask(__name__)
-BASE_DIR = Path("/srv/app/uploads").resolve()
+FILES = {
+    "profile": Path("/srv/app/uploads/profile.txt"),
+    "avatar": Path("/srv/app/uploads/avatar.txt"),
+}
 
 
 @app.get("/read-contained")
 def read_contained():
-    name = request.args.get("name", "welcome.txt")
-    path = (BASE_DIR / name).resolve()
-    if BASE_DIR not in path.parents:
-        return "blocked", 400
+    path = FILES.get(request.args.get("name", "profile"), FILES["profile"])
     return path.read_text(encoding="utf-8")

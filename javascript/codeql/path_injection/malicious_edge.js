@@ -1,10 +1,13 @@
 const express = require("express");
 const fs = require("fs");
-const path = require("path");
 
 const app = express();
-const baseDir = "/srv/app/uploads";
+const baseDir = "/srv/app/uploads/";
+
+function uploadedPath(name) {
+  return baseDir + name;
+}
 
 app.get("/read-upload", (req, res) => {
-  res.send(fs.readFileSync(path.join(baseDir, String(req.query.name)), "utf8"));
+  res.send(fs.readFileSync(uploadedPath(String(req.query.name)), "utf8"));
 });

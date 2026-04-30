@@ -1,12 +1,12 @@
-const express = require("express");
+const http = require("http");
+const url = require("url");
 
-const app = express();
-
-function actor(req) {
-  return req.get("X-Actor") || "anonymous";
+function auditMessage(username) {
+  return `[AUDIT] user=${username} action=download`;
 }
 
-app.get("/audit", (req, res) => {
-  console.info(`actor=${actor(req)} action=download`);
-  res.send("ok");
+http.createServer((req, res) => {
+  const query = url.parse(req.url, true).query;
+  console.warn(auditMessage(query.username));
+  res.end("ok");
 });

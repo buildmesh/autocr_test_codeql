@@ -1,9 +1,9 @@
 const express = require("express");
-const serialize = require("node-serialize");
+const yaml = require("js-yaml");
 
 const app = express();
 app.use(express.text({ type: "*/*" }));
 
 app.post("/restore", (req, res) => {
-  res.json({ object: serialize.unserialize(req.body) });
+  res.json({ object: yaml.load(req.body) });
 });

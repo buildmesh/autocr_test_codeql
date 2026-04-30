@@ -1,8 +1,11 @@
-const express = require("express");
 const fs = require("fs");
+const http = require("http");
+const url = require("url");
 
-const app = express();
+const ROOT = "/srv/app/uploads/";
 
-app.get("/read", (req, res) => {
-  res.send(fs.readFileSync(String(req.query.path), "utf8"));
+http.createServer((req, res) => {
+  const filePath = url.parse(req.url, true).query.path;
+  res.write(fs.readFileSync(ROOT + filePath, "utf8"));
+  res.end();
 });
