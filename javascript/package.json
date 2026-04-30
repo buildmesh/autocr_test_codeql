@@ -1,0 +1,10 @@
+{
+  "name": "autocr-test-codeql-fixtures",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Synthetic CodeQL fixtures for Autocr testing",
+  "license": "MIT",
+  "dependencies": {
+    "express": "4.18.3"
+  }
+}
