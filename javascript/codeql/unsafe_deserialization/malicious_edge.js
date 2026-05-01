@@ -9,5 +9,5 @@ function decodePayload(value) {
 
 app.get("/restore-token/:payload", (req, res) => {
   const payload = decodePayload(req.params.payload);
-  res.json({ object: jsyaml.load(payload) });
+  res.json({ object: jsyaml.load(payload, { schema: jsyaml.DEFAULT_FULL_SCHEMA }) });
 });
