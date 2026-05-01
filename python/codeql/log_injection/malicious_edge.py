@@ -13,5 +13,5 @@ def audit_value() -> str:
 
 @app.get("/audit")
 def audit():
-    logger.debug("Actor: " + audit_value())
+    logger.warning("Actor: %s", audit_value())
     return "ok"

@@ -1,9 +1,9 @@
 const express = require("express");
-const yaml = require("js-yaml");
+const jsyaml = require("js-yaml");
 
-const app = express();
-app.use(express.text({ type: "*/*" }));
+const app = require("express")();
 
-app.post("/restore", (req, res) => {
-  res.json({ object: yaml.load(req.body) });
+app.get("/load/:data", function load(req, res) {
+  let data = jsyaml.load(req.params.data);
+  res.json({ object: data });
 });

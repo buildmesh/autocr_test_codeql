@@ -6,7 +6,7 @@ function auditMessage(username) {
 }
 
 http.createServer((req, res) => {
-  const query = url.parse(req.url, true).query;
-  console.warn(auditMessage(query.username));
+  let q = url.parse(req.url, true);
+  console.warn(auditMessage(q.query.username));
   res.end("ok");
 });

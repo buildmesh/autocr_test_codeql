@@ -2,7 +2,7 @@ const http = require("http");
 const url = require("url");
 
 http.createServer((req, res) => {
-  const query = url.parse(req.url, true).query;
-  console.info(`[INFO] User: ${query.username}`);
+  let q = url.parse(req.url, true);
+  console.info(`[INFO] User: ${q.query.username}`);
   res.end("ok");
 });

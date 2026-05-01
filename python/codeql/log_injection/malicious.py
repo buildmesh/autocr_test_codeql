@@ -8,5 +8,5 @@ app = Flask(__name__)
 
 @app.get("/login")
 def login():
-    logging.info("User name: " + request.args.get("user", "unknown"))
+    logging.info("User name: %s", request.args.get("user", "unknown"))
     return "ok"
